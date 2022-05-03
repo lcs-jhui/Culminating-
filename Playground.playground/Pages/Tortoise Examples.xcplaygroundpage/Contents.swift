@@ -33,10 +33,10 @@ PlaygroundPage.current.liveView = canvas
 
 To use the Tortoise abstraction, just create an instance of the Tortoise class, and provide it with a canvas object that is should draw upon.
 */
-
+// Draw grid
+canvas.drawAxes(withScale: true, by: 20, color: .black)
 // Create a turtle that will draw upon the canvas
 let turtle = Tortoise(drawingUpon: canvas)
-let diagonal = sqrt(scale * scale + scale * scale)
 
 //// Draw a square
 //turtle.penUp()
@@ -241,38 +241,66 @@ let diagonal = sqrt(scale * scale + scale * scale)
 //    turtle.drawSelf()
 //}
 
+
+let diagonal = (sqrt(20 * 20 + 20 * 20)*2)
+
 // Where is the turtle?
 turtle.currentPosition()
 
 //Set scale
-let scale = 10
+let scale = 20
 
-//move more to the middle
+//Functions
+func drawArrow() {
+    //Draw a line
+    turtle.penDown()
+    turtle.forward(steps: 3 * scale)
+
+    //turtle draw upward line
+    turtle.right(by: 90)
+    turtle.forward(steps: 1 * scale)
+    turtle.left(by: 135)
+    turtle.forward(steps: Int(diagonal))
+    turtle.left(by: 90)
+    turtle.forward(steps: Int(diagonal))
+    turtle.left(by: 135)
+    turtle.forward(steps: 1 * scale)
+    turtle.right(by: 90)
+    turtle.forward(steps: 3 * scale)
+    turtle.left(by: 90)
+    turtle.forward(steps: 2 * scale)
+    turtle.left(by: 90)
+    turtle.drawSelf()
+    
+   
+}
+
+//Move turtle up
 turtle.penUp()
-turtle.forward(steps: 5 * scale)
-turtle.left(by: 90)
-turtle.forward(steps: 5 * scale)
-turtle.right(by: 90)
+turtle.setPosition(to: Point(x: 0, y: 440))
 
-//Draw a line
-turtle.penDown()
-turtle.forward(steps: 3 * scale)
+for _ in 1...6 {
+    
+    for _ in 1...5{
+    drawArrow()
+    
+    turtle.penUp()
+    turtle.forward(steps: 100)
+    }
+    turtle.penUp()
+    turtle.left(by: 180)
+    turtle.forward(steps: 500)
+    turtle.left(by: 90)
+    turtle.forward(steps: 75)
+    turtle.left(by: 90)
+   
+}
 
-//Draw the turtle
+//where are we
+turtle.drawSelf()
+turtle.currentPosition()
+turtle.currentHeading()
 
-//turtle draw upward line
-turtle.right(by: 90)
-turtle.forward(steps: 1 * scale)
-turtle.left(by: 135)
-turtle.forward(steps: <#T##Int#>)
-turtle.left(by: 90)
-turtle.forward(steps: 2 * scale)
-turtle.left(by: 135)
-turtle.forward(steps: 1 * scale)
-turtle.right(by: 90)
-turtle.forward(steps: 3 * scale)
-turtle.left(by: 90)
-turtle.forward(steps: 1 * scale)
 /*:
  ## Show the Assistant Editor
  Don't see any results?
