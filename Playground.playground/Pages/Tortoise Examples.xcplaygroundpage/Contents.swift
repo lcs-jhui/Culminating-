@@ -29,10 +29,10 @@ let canvas = Canvas(width: preferredWidth, height: preferredHeight)
 PlaygroundPage.current.liveView = canvas
 
 /*:
-## Tortoise class
-
-To use the Tortoise abstraction, just create an instance of the Tortoise class, and provide it with a canvas object that is should draw upon.
-*/
+ ## Tortoise class
+ 
+ To use the Tortoise abstraction, just create an instance of the Tortoise class, and provide it with a canvas object that is should draw upon.
+ */
 // Draw grid
 canvas.drawAxes(withScale: true, by: 20, color: .black)
 // Create a turtle that will draw upon the canvas
@@ -255,7 +255,7 @@ func drawArrow() {
     //Draw a line
     turtle.penDown()
     turtle.forward(steps: 3 * scale)
-
+    
     //turtle draw upward line
     turtle.right(by: 90)
     turtle.forward(steps: 1 * scale)
@@ -272,34 +272,40 @@ func drawArrow() {
     turtle.left(by: 90)
     turtle.drawSelf()
     
-   
+    
 }
 
 //Move turtle up
 turtle.penUp()
 turtle.setPosition(to: Point(x: 0, y: 440))
 
-for _ in 1...6 {
+for _ in 1...7 {
     
-    for _ in 1...5{
-    drawArrow()
-    
-    turtle.penUp()
-    turtle.forward(steps: 100)
+    for _ in 1...5 {
+        //where are we
+        turtle.drawSelf()
+        turtle.currentPosition()
+        turtle.currentHeading()
+        drawArrow()
+        //where are we
+        turtle.drawSelf()
+        turtle.currentPosition()
+        turtle.currentHeading()
+
+        turtle.penUp()
+        turtle.forward(steps: 100)
     }
+    
+    // Go back to start of row
     turtle.penUp()
     turtle.left(by: 180)
     turtle.forward(steps: 500)
     turtle.left(by: 90)
     turtle.forward(steps: 75)
     turtle.left(by: 90)
-   
+    
 }
 
-//where are we
-turtle.drawSelf()
-turtle.currentPosition()
-turtle.currentHeading()
 
 /*:
  ## Show the Assistant Editor
@@ -308,7 +314,7 @@ turtle.currentHeading()
  Remember to show the Assistant Editor (1), and then switch to Live View (2):
  
  ![timeline](timeline.png "Timeline")
-
+ 
  ## Use source control
  To keep your work organized, receive feedback, and earn a high grade in this course, regular use of source control is a must.
  
