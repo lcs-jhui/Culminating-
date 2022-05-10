@@ -9,8 +9,8 @@
  
  Set the size of your desired canvas by adjusting the constants on lines 10 and 11.
  */
-let preferredWidth = 500
-let preferredHeight = 500
+let preferredWidth = 600
+let preferredHeight = 600
 /*:
  ## Required code
  
@@ -33,8 +33,10 @@ PlaygroundPage.current.liveView = canvas
  
  To use the Tortoise abstraction, just create an instance of the Tortoise class, and provide it with a canvas object that is should draw upon.
  */
+canvas.highPerformance = true
+
 // Draw grid
-canvas.drawAxes(withScale: true, by: 20, color: .black)
+//canvas.drawAxes(withScale: true, by: 20, color: .black)
 // Create a turtle that will draw upon the canvas
 let turtle = Tortoise(drawingUpon: canvas)
 
@@ -59,18 +61,96 @@ func fillSquare() {
         turtle.penUp()
     }
     turtle.right(by: 90)
-    turtle.drawSelf()
+   //turtle.drawSelf()
 }
 
-//draw row 1
-fillSquare()
-fillSquare()
-fillSquare()
+func drawTessellation() {
+    //draw row 1
+    fillSquare()
+    fillSquare()
+    fillSquare()
+    
+    //draw row 2
+    turtle.left(by: 180)
+    turtle.forward(steps: 60)
+    turtle.right(by: 90)
+    turtle.forward(steps: 20)
+    fillSquare()
+    turtle.forward(steps: 40)
+    fillSquare()
+    fillSquare()
+    
+    //draw row 3
+    turtle.left(by: 180)
+    turtle.forward(steps: 100)
+    turtle.right(by: 90)
+    turtle.forward(steps: 20)
+    fillSquare()
+    turtle.forward(steps: 20)
+    fillSquare()
+    turtle.forward(steps: 20)
+    fillSquare()
+    
+    //draw row 4
+    turtle.left(by: 180)
+    turtle.forward(steps: 100)
+    turtle.right(by: 90)
+    turtle.forward(steps: 20)
+    turtle.right(by: 90)
+    turtle.forward(steps: 20)
+    fillSquare()
+    turtle.forward(steps: 20)
+    fillSquare()
+    turtle.forward(steps: 20)
+    fillSquare()
+    
+    //draw row 5
+    turtle.left(by: 180)
+    turtle.forward(steps: 120)
+    turtle.right(by: 90)
+    turtle.forward(steps: 20)
+    turtle.right(by: 90)
+    turtle.forward(steps: 20)
+    fillSquare()
+    fillSquare()
+    turtle.forward(steps: 40)
+    fillSquare()
+    
+    //draw row 6
+    turtle.left(by: 180)
+    turtle.forward(steps: 120)
+    turtle.right(by: 90)
+    turtle.forward(steps: 20)
+    turtle.right(by: 90)
+    turtle.forward(steps: 60)
+    fillSquare()
+    fillSquare()
+    fillSquare()
+    
+    //go to position to start another tessellation
+    turtle.right(by: 90)
+    turtle.forward(steps: 100)
+    turtle.left(by: 90)
+    //turtle.drawSelf()
+    
+}
 
-//draw row 2
-turtle.left(by: 180)
-turtle.forward(steps: 60)
-turtle.right(by: 90)
-turtle.forward(steps: 20)
-fillSquare()
+for _ in 1 ...  5 {
+
+    for _ in 1 ... 5 {
+        
+        drawTessellation()
+        
+    }
+    
+    //Go to start of next row
+    turtle.left(by: 180)
+    turtle.forward(steps: 600)
+    turtle.right(by: 90)
+    turtle.forward(steps: 120)
+    turtle.right(by: 90)
+    
+}
+    
+canvas.highPerformance = false
 
