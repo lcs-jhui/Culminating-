@@ -35,10 +35,15 @@ PlaygroundPage.current.liveView = canvas
  */
 canvas.highPerformance = true
 
+
 // Draw grid
 //canvas.drawAxes(withScale: true, by: 20, color: .black)
+
 // Create a turtle that will draw upon the canvas
 let turtle = Tortoise(drawingUpon: canvas)
+
+//set pen colour
+turtle.setPenColor(to: .black)
 
 //let scale = 20
 
